@@ -1,22 +1,22 @@
 pragma solidity ^0.4.25;
 
-contract ZombieFactory {
+contract PunkFactory {
 
-    event NewZombie(uint zombieId, string name, uint dna);
+    event NewPunk(uint punkId, string name, uint dna);
 
     uint dnaDigits = 16;
     uint dnaModulus = 10 ** dnaDigits;
 
-    struct Zombie {
+    struct Punk {
         string name;
         uint dna;
     }
 
-    Zombie[] public zombies;
+    Punk[] public punks;
 
-    function _createZombie(string _name, uint _dna) private {
-        uint id = zombies.push(Zombie(_name, _dna)) - 1;
-        emit NewZombie(id, _name, _dna);
+    function _createPunk(string _name, uint _dna) private {
+        uint id = punks.push(Punk(_name, _dna)) - 1;
+        emit NewPunk(id, _name, _dna);
     }
 
     function _generateRandomDna(string _str) private view returns (uint) {
@@ -24,9 +24,9 @@ contract ZombieFactory {
         return rand % dnaModulus;
     }
 
-    function createRandomZombie(string _name) public {
+    function createRandomPunk(string _name) public {
         uint randDna = _generateRandomDna(_name);
-        _createZombie(_name, randDna);
+        _createPunk(_name, randDna);
     }
 
 }
